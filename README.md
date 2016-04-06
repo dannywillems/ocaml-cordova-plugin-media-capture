@@ -1,5 +1,7 @@
 # ocaml-cordova-plugin-media-capture
 
+* gen_js_api (master branch): [![Build Status](https://travis-ci.org/dannywillems/ocaml-cordova-plugin-media-capture.svg?branch=master)](https://travis-ci.org/dannywillems/ocaml-cordova-plugin-media-capture)
+
 Binding to
 [cordova-plugin-media-capture](https://github.com/apache/cordova-plugin-media-capture)
 
