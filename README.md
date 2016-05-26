@@ -45,22 +45,3 @@ cordova plugin add cordova-plugin-media-capture
 
 See the official documentation:
 [cordova-plugin-media-capture](https://github.com/apache/cordova-plugin-media-capture)
-
-## ! BE CAREFUL !
-
-The plugin creates a new object called *navigator.device.capture*, but the object is
-available when the *deviceready* event is handled.
-
-We provide a function *Cordova_media_capture.t* of type *unit -> Cordova_media_capture.capture* which creates the
-binding to the *navigator.device.capture* js object. You must call it when the deviceready
-event is handled, eg (with js_of_ocaml)
-
-```OCaml
-let on_device_ready _ =
-  let t = Cordova_media_capture.t () in
-  (* Some code *)
-
-let _ =
-  Dom.addEventListener Dom_html.document (Dom.Event.make "deviceready")
-  (Dom_html.handler on_device_ready) Js._false
-```
