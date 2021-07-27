@@ -1,7 +1,7 @@
-opam-version: "1.2"
+opam-version: "2.0"
 name:         "ocaml-cordova-plugin-media-capture"
 maintainer:   "Danny Willems <contact@danny-willems.be>"
-author:       "Danny Willems <contact@danny-willems.be>"
+authors:       "Danny Willems <contact@danny-willems.be>"
 
 homepage:     "https://github.com/dannywillems/ocaml-cordova-plugin-media-capture"
 bug-reports:  "https://github.com/dannywillems/ocaml-cordova-plugin-media-capture/issues"
@@ -12,11 +12,10 @@ license:      "LGPL-3.0 with OCaml linking exception"
 
 version:      "1.0"
 
-build: [make "build"]
-install: [make "install"]
-remove: [make "remove"]
+build: [[ "dune" "build" "-j" jobs "-p" name "@install" ]]
 
 depends: [
+  "ocaml" { >= "4.08.0"}
   "gen_js_api"
 ]
 available: [ ocaml-version >= "4.03.0" ]
