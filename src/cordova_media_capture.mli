@@ -5,108 +5,167 @@ type error_type =
   | Invalid_argument [@js 2]
   | No_media_files [@js 3]
   | Not_supported [@js 20]
-  [@@js.enum]
+[@@js.enum]
+
 (* -------------------------------------------------------------------------- *)
 
 (* -------------------------------------------------------------------------- *)
-class capture_video_options : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method limit          : int
-    method duration       : int
-  end
+class capture_video_options :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
+
+       method limit : int
+       [@@js.get]
+
+       method duration : int
+       [@@js.get]
+     end
 
 (* -------------------------------------------------------------------------- *)
-class capture_image_options : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method limit          : int
-  end
-(* -------------------------------------------------------------------------- *)
+class capture_image_options :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
 
-(* -------------------------------------------------------------------------- *)
-class capture_audio_options : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method limit          : int
-    method duration       : int
-  end
-(* -------------------------------------------------------------------------- *)
+       method limit : int [@@js.get]
+     end
 
-(* -------------------------------------------------------------------------- *)
-class configuration_data : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method media_type         : string
-    method height             : int
-    method width              : int
-  end
 (* -------------------------------------------------------------------------- *)
 
 (* -------------------------------------------------------------------------- *)
-class media_file_data : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method codecs             : string
-    method bitrate            : int
-    method height             : int
-    method width              : int
-    method duration           : int
-  end
+class capture_audio_options :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
+
+       method limit : int
+       [@@js.get]
+
+       method duration : int
+       [@@js.get]
+     end
+
 (* -------------------------------------------------------------------------- *)
 
 (* -------------------------------------------------------------------------- *)
-class capture_error : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method code : error_type
-  end
-(* -------------------------------------------------------------------------- *)
+class configuration_data :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
 
-(* -------------------------------------------------------------------------- *)
-class media_file : Ojs.t ->
-  object
-    inherit Ojs.obj
-    method name               : string
-    method full_path          : string
-    method media_type         : string
-    method last_modified_date : string
-    method size               : int
-    method get_format_data    : (media_file_data -> unit)       ->
-                                ?err_cb:(capture_error -> unit) ->
-                                unit                            ->
-                                unit
-  end
+       method media_type : string
+       [@@js.get]
+
+       method height : int
+       [@@js.get]
+
+       method width : int
+       [@@js.get]
+     end
+
 (* -------------------------------------------------------------------------- *)
 
 (* -------------------------------------------------------------------------- *)
-class capture : Ojs.t ->
-  object
-    inherit Ojs.obj
+class media_file_data :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
 
-    method capture_video  : (media_file array -> unit)  ->
-                            (capture_error -> unit)     ->
-                            ?opt:capture_video_options  ->
-                            unit                        ->
-                            unit
+       method codecs : string
+       [@@js.get]
 
-    method capture_image  : (media_file array -> unit)  ->
-                            (capture_error -> unit)     ->
-                            ?opt:capture_image_options  ->
-                            unit                        ->
-                            unit
+       method bitrate : int
+       [@@js.get]
 
-    method capture_audio  : (media_file array -> unit)  ->
-                            (capture_error -> unit)     ->
-                            ?opt:capture_audio_options  ->
-                            unit                        ->
-                            unit
+       method height : int
+       [@@js.get]
 
-  end
+       method width : int
+       [@@js.get]
+
+       method duration : int
+       [@@js.get]
+     end
+
 (* -------------------------------------------------------------------------- *)
 
 (* -------------------------------------------------------------------------- *)
-val t : unit -> capture
-[@@js.get "navigator.device.capture"]
+class capture_error :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
+
+       method code : error_type [@@js.get]
+     end
+
 (* -------------------------------------------------------------------------- *)
 
+(* -------------------------------------------------------------------------- *)
+class media_file :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
+
+       method name : string
+       [@@js.get]
+
+       method full_path : string
+       [@@js.get]
+
+       method media_type : string
+       [@@js.get]
+
+       method last_modified_date : string
+       [@@js.get]
+
+       method size : int
+       [@@js.get]
+
+       method get_format_data :
+         (media_file_data -> unit) ->
+         ?err_cb:(capture_error -> unit) ->
+         unit ->
+         unit
+       [@@js.call]
+     end
+
+(* -------------------------------------------------------------------------- *)
+
+(* -------------------------------------------------------------------------- *)
+class capture :
+  Ojs.t
+  -> object
+       inherit Ojs.obj
+
+       method capture_video :
+         (media_file array -> unit) ->
+         (capture_error -> unit) ->
+         ?opt:capture_video_options ->
+         unit ->
+         unit
+       [@@js.call]
+
+       method capture_image :
+         (media_file array -> unit) ->
+         (capture_error -> unit) ->
+         ?opt:capture_image_options ->
+         unit ->
+         unit
+       [@@js.call]
+
+       method capture_audio :
+         (media_file array -> unit) ->
+         (capture_error -> unit) ->
+         ?opt:capture_audio_options ->
+         unit ->
+         unit
+       [@@js.call]
+     end
+
+(* -------------------------------------------------------------------------- *)
+
+(* -------------------------------------------------------------------------- *)
+val t : unit -> capture [@@js.get "navigator.device.capture"]
+
+(* -------------------------------------------------------------------------- *)
