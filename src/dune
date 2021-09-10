@@ -1,0 +1,12 @@
+(rule
+ (targets cordova_media_capture.ml)
+ (deps cordova_media_capture.mli)
+ (action (run %{bin:gen_js_api} %{deps})))
+
+(library
+ (public_name cordova-plugin-media-capture)
+ (name cordova_media_capture)
+ (modes byte)
+ (libraries gen_js_api)
+ ; (preprocess (pps gen_js_api))
+)
