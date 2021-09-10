@@ -1,3 +1,0 @@
-version = "1.0"
-description = "Binding to the activity indicator cordova plugin using gen_js_api"
-archive(byte) = "activity_indicator.cma"
