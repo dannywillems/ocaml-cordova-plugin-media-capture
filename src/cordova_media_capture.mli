@@ -4,6 +4,7 @@ type error_type =
   | Application_busy [@js 1]
   | Invalid_argument [@js 2]
   | No_media_files [@js 3]
+  | Capture_permission_denied [@js 4]
   | Not_supported [@js 20]
 [@@js.enum]
 
