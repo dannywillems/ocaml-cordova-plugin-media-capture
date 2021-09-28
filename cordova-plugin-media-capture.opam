@@ -6,7 +6,7 @@ homepage:     "git+https://github.com/dannywillems/ocaml-cordova-plugin-media-ca
 bug-reports:  "git+https://github.com/dannywillems/ocaml-cordova-plugin-media-capture/issues"
 dev-repo:     "git+https://github.com/dannywillems/ocaml-cordova-plugin-media-capture"
 license:      "LGPL-3.0 with OCaml linking exception"
-version:      "1.0"
+version:      "1.1"
 description: "Binding to the media-capture cordova plugin using gen_js_api"
 synopsis: "Binding to the media-capture cordova plugin using gen_js_api"
 build: [[ "dune" "build" "-j" jobs "-p" name "@install" ]]
